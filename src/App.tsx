@@ -72,6 +72,9 @@ export default function App() {
       const green = mat('#667c4d');
       const lawnMat = mat('#71865a');
       const stone = mat('#b6ad9d');
+      const bedBase = mat('#92775f');
+      const linen = mat('#e8dfcf');
+      const sofaMat = mat('#b9ad9b');
 
       const ground = new T.Mesh(new T.PlaneGeometry(240, 240), lawnMat);
       ground.rotation.x = -Math.PI / 2;
@@ -163,9 +166,6 @@ export default function App() {
           }
         }
         // Simple furniture blocks make the interior camera useful for spatial reading.
-        const bedBase = mat('#92775f');
-        const linen = mat('#e8dfcf');
-        const sofaMat = mat('#b9ad9b');
         const furniture = new T.Group();
         g.add(furniture);
         const bed = (x: number, z: number) => {
