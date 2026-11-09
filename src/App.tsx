@@ -329,8 +329,8 @@ export default function App() {
     </section>
     <section className="reference-gallery">
       <div className="gallery-heading"><div><span className="eyebrow">YOUR ORIGINAL DESIGN REFERENCES</span><h2>The house design we discussed.</h2><p>Actual Sundargarh house presentation board retrieved from your earlier design work — not stock inspiration photographs.</p></div><span className="gallery-note">PROJECT REFERENCE</span></div>
-      <a className="reference-board-link" href={`${import.meta.env.BASE_URL}assets/reference-board.webp`} target="_blank" rel="noreferrer">
-        <img className="reference-board-image" src={`${import.meta.env.BASE_URL}assets/reference-board.webp`} alt="Original Sundargarh house presentation board showing the exterior, floor plans, and design references" />
+      <a className="reference-board-link" href={'/home-render/assets/reference-board.webp'} target="_blank" rel="noreferrer">
+        <img className="reference-board-image" src={'/home-render/assets/reference-board.webp'} alt="Original Sundargarh house presentation board showing the exterior, floor plans, and design references" />
         <span className="reference-board-caption">Open the original project board ↗</span>
       </a>
       <div className="reference-topics">
