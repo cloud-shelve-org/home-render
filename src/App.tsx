@@ -122,7 +122,7 @@ export default function App() {
         box(g, 60, 11, 0.7, 0, 0.75, -15, plaster);
         box(g, 0.7, 11, 30, -29.65, 0.75, 0, plaster);
         box(g, 0.7, 11, 30, 29.65, 0.75, 0, plaster);
-        box(g, 60, 11, 0.7, 0, 0.75, 15, plaster);
+        box(g, 60, 11, 0.7, 0, 0.75, 15, view === 'interior' ? new T.MeshStandardMaterial({ color: '#e8ddc9', transparent: true, opacity: 0.13, depthWrite: false }) : plaster);
         // Internal partitions hint at the room arrangement.
         box(g, 0.35, 10, 28, -9, 0.8, 0, plasterLight);
         box(g, 0.35, 10, 28, 10, 0.8, 0, plasterLight);
@@ -162,9 +162,31 @@ export default function App() {
             box(g, 0.62, 0.62, 0.78, 4.35 + col * 0.88, 1.35 + row * 0.94, 15.25, brickDark);
           }
         }
-        // Ground floor slab / first-floor terrace edge.
-        box(g, 68, 0.8, 39, 0, 11.8, 0, concreteTop);
-        box(g, 70, 0.2, 41, 0, 12.6, 0, wood);
+        // Simple furniture blocks make the interior camera useful for spatial reading.
+        const bedBase = mat('#92775f');
+        const linen = mat('#e8dfcf');
+        const sofaMat = mat('#b9ad9b');
+        const furniture = new T.Group();
+        g.add(furniture);
+        const bed = (x: number, z: number) => {
+          box(furniture, 7.5, 1.0, 7.0, x, 0.9, z, bedBase);
+          box(furniture, 7.2, 0.55, 6.7, x, 1.9, z, linen);
+          box(furniture, 7.3, 1.4, 0.5, x, 1.0, z + 3.5, woodLight);
+          box(furniture, 2.7, 0.7, 1.5, x - 1.8, 2.0, z + 2.1, plasterLight);
+          box(furniture, 2.7, 0.7, 1.5, x + 1.8, 2.0, z + 2.1, plasterLight);
+        };
+        bed(-19, -6); bed(20, -6);
+        // Living seating, centre table and dining table.
+        box(furniture, 10, 1.8, 3.0, 1, 1.0, 3, sofaMat);
+        box(furniture, 2.0, 1.4, 8.0, -4.0, 1.0, 3, sofaMat);
+        box(furniture, 5.5, 1.0, 3.5, 1, 0.9, -3, woodLight);
+        box(furniture, 8, 0.35, 4.5, -1, 3.0, -12, wood);
+        for (const x of [-4, 2, 6]) for (const z of [-14, -10]) box(furniture, 0.65, 2.2, 0.65, x, 0.8, z, woodLight);
+        // Ground floor slab / first-floor terrace edge is removed for the cutaway view.
+        if (view !== 'interior') {
+          box(g, 68, 0.8, 39, 0, 11.8, 0, concreteTop);
+          box(g, 70, 0.2, 41, 0, 12.6, 0, wood);
+        }
         // Stair block visible on east side.
         for (let i = 0; i < 12; i++) box(g, 8, 0.22, 1.15, 22, 0.8 + i * 0.32, -12 + i * 1.05, concreteTop);
       }
@@ -191,15 +213,24 @@ export default function App() {
             box(f, 0.72, 0.65, 0.78, 7.55 + col * 0.98, y + 0.55 + row * 0.98, 13.2, brickDark);
           }
         }
+        // Basic bedroom and lounge furniture for the upper cutaway view.
+        if (view === 'interior') {
+          box(f, 10, 1.0, 7, -5, y + 0.8, -1, bedBase);
+          box(f, 9.6, 0.5, 6.6, -5, y + 1.8, -1, linen);
+          box(f, 9, 1.6, 3.0, 5, y + 0.8, 7, sofaMat);
+          box(f, 4.0, 0.8, 2.5, 5, y + 0.8, 2, woodLight);
+        }
         // Upper balcony with timber soffit and railing.
         box(f, 45, 0.55, 8, -1, y, 18, concreteTop);
         box(f, 45, 0.18, 8, -1, y + 0.58, 18, wood);
         box(f, 45, 0.2, 0.18, -1, y + 1.0, 22, wood);
         for (let x = -22; x <= 20; x += 2.8) box(f, 0.12, 1.0, 0.12, x, y + 0.15, 22, wood);
         // Staggered roof slabs and deep overhangs.
-        box(f, 49, 0.65, 30, -3, y + 9.45, 1, concreteTop);
-        box(f, 50, 0.18, 30, -3, y + 10.12, 1, wood);
-        box(f, 30, 0.6, 22, 3, y + 10.1, -8, concrete);
+        if (view !== 'interior') {
+          box(f, 49, 0.65, 30, -3, y + 9.45, 1, concreteTop);
+          box(f, 50, 0.18, 30, -3, y + 10.12, 1, wood);
+          box(f, 30, 0.6, 22, 3, y + 10.1, -8, concrete);
+        }
         // Parapet on roof terrace.
         box(f, 30, 1.0, 0.25, 4, y + 10.2, 12, plaster);
         box(f, 0.25, 1.0, 20, -11, y + 10.2, 2, plaster);
