@@ -11,3 +11,14 @@
 .gallery-grid figure:hover img{transform:scale(1.035)}
 .gallery-grid figcaption{position:absolute;bottom:0;left:0;right:0;padding:22px 12px 10px;background:linear-gradient(transparent,rgba(20,20,16,.72));color:white;font-size:10px;letter-spacing:1.2px}
 @media(max-width:700px){.reference-gallery{padding:14px}.gallery-heading{display:block}.gallery-note{display:inline-block;margin-top:12px}.gallery-grid{grid-template-columns:1fr 1fr;grid-template-rows:190px 130px 130px}.gallery-grid figure.gallery-feature{grid-column:span 2;grid-row:auto}}
+
+.reference-board-link{display:block;position:relative;max-width:760px;margin:18px auto 20px;border:1px solid #d8d1c4;border-radius:9px;overflow:hidden;background:#e8e1d5}
+.reference-board-image{display:block;width:100%;height:auto;max-height:520px;object-fit:contain}
+.reference-board-caption{display:block;padding:11px 14px;background:#354638;color:#fff;text-align:center;font-size:11px;letter-spacing:.8px}
+.reference-topics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}
+.reference-topics article{background:#eeeadf;border-radius:8px;padding:13px;display:flex;flex-direction:column;gap:7px}
+.reference-topics b{font:500 17px Georgia,serif;color:#39372f}
+.reference-topics span,.gallery-footnote{font-size:11px;line-height:1.55;color:#777165}
+.gallery-footnote{margin:14px 0 0}
+@media(max-width:700px){.reference-topics{grid-template-columns:1fr 1fr}.reference-board-image{max-height:360px}}
+@media(max-width:420px){.reference-topics{grid-template-columns:1fr}}
