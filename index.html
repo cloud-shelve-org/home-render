@@ -1,1 +1,36 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/><title>Sundargarh Dream Home 3D</title></head><body><div id="root"></div><script type="module" src="/src/main.tsx"></script></body></html>
+<!doctype html>
+<html lang="en"><head>
+<meta charset="UTF-8"/><meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
+<meta name="theme-color" content="#f1eee6"/><title>Sundargarh Dream Home 3D</title>
+<style>
+#boot-diagnostic{display:none;position:fixed;z-index:999999;inset:12px 12px auto;padding:16px;background:#fff1f0;border:2px solid #c62828;border-radius:12px;color:#4a1717;font:14px/1.45 Arial,sans-serif;max-height:75vh;overflow:auto;box-shadow:0 8px 30px #0003}
+#boot-diagnostic h2{font-size:18px;margin:0 0 8px}#boot-diagnostic pre{white-space:pre-wrap;overflow-wrap:anywhere;font:12px/1.4 monospace}#boot-diagnostic button{padding:10px 14px;border:0;border-radius:7px;background:#292d27;color:white}.hint{font-size:12px;color:#633;margin-top:8px}
+</style>
+<script>
+(function(){
+ function showDiagnostic(title,detail){
+  var panel=document.getElementById('boot-diagnostic');if(!panel)return;
+  panel.style.display='block';panel.querySelector('h2').textContent=title;
+  panel.querySelector('pre').textContent=String(detail||'No additional details available');
+  window.__homeDiagnosticText=title+'\\n'+panel.querySelector('pre').textContent;
+ }
+ window.addEventListener('error',function(e){
+  var d=e.message||(e.target&&(e.target.src||e.target.href))||'Unknown browser error';
+  if(e.error&&e.error.stack)d+='\\n\\n'+e.error.stack;showDiagnostic('Website error detected',d);
+ },true);
+ window.addEventListener('unhandledrejection',function(e){
+  var r=e.reason;showDiagnostic('Unhandled JavaScript rejection',r&&(r.stack||r.message)||r);
+ });
+ window.addEventListener('DOMContentLoaded',function(){
+  setTimeout(function(){var root=document.getElementById('root');
+   if(root&&!root.firstElementChild)showDiagnostic('The app did not start','The page loaded, but React did not render the application.\\n\\nPage: '+location.href+'\\nUser agent: '+navigator.userAgent);
+  },8000);
+ });
+})();
+</script></head>
+<body>
+<div id="boot-diagnostic" role="alert"><h2>Website diagnostics</h2><pre></pre>
+<button type="button" onclick="navigator.clipboard&&navigator.clipboard.writeText(window.__homeDiagnosticText||'No diagnostic details')">Copy error details</button>
+<div class="hint">Take a screenshot of this panel and send it in the chat.</div></div>
+<div id="root"></div><script type="module" src="/src/main.tsx"></script>
+</body></html>
