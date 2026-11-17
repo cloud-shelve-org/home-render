@@ -1,6 +1,6 @@
 # Sundargarh Dream Home – Phase-wise Construction Plan
 
-Interactive 3D concept and construction phasing reference for the owner's frozen final duplex design.
+Interactive 3D concept and construction phasing reference for the owner's frozen final duplex design. **[Open the phase-wise construction plan](https://cloud-shelve-org.github.io/home-render/phases.html).**
 
 ## Frozen final design
 - Approximate plot: 100 ft × 195 ft (verify by licensed survey).
