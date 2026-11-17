@@ -322,7 +322,7 @@ export default function App() {
 
   return <main className="app-shell">
     <header className="site-header"><div className="brand-mark">⌂</div><div><b>SUNDARGARH DREAM HOME</b><span>ARCHITECTURAL 3D STUDY · ODISHA</span></div><div className="header-tag">CONCEPT DESIGN / 01</div></header>
-    <section className="hero-copy"><div><div className="eyebrow">A HOME DESIGNED AROUND LIGHT, SHADE &amp; GARDEN</div><h1>Explore your future home.</h1><p>A warm, contemporary Indian duplex concept with shaded verandahs, brick jali and tropical landscaping.</p></div><div className="area-summary"><div><b>1,800</b><span>GROUND SQ.FT.</span></div><div><b>900</b><span>FIRST SQ.FT.</span></div><div><b>800</b><span>FUTURE SQ.FT.</span></div></div></section>
+    <section className="hero-copy"><div><div className="eyebrow">A HOME DESIGNED AROUND LIGHT, SHADE &amp; GARDEN</div><h1>Explore your future home.</h1><p>Your frozen Vastu-oriented tropical duplex, built in planned stages without relocating completed permanent walls.</p></div><div className="area-summary"><div><b>1,800</b><span>GROUND SQ.FT.</span></div><div><b>1,450</b><span>FIRST SQ.FT.</span></div><div><b>800</b><span>REAR FUTURE EXTENSION</span></div></div></section>
     <section className="workspace">
       <div className="model-card"><div className="model-toolbar"><div><span className="live-dot"></span> INTERACTIVE 3D MODEL <small>DRAG TO ROTATE · PINCH TO ZOOM</small></div><button onClick={() => setView('front')}>Reset view ↗</button></div><div ref={mount} className="model-canvas"/><div className="view-strip">{([['front','South / Front'],['rear','North / Garden'],['east','East'],['west','West'],['aerial','Aerial'],['interior','Interior angle']] as [ViewName,string][]).map(([v,label])=><button key={v} className={view===v?'selected':''} onClick={()=>setView(v)}>{label}</button>)}</div></div>
       <aside className="control-panel"><div className="panel-heading"><span>MODEL SETTINGS</span><b>Explore</b></div><label>Floor visibility</label><div className="segmented">{(['both','ground','first'] as FloorMode[]).map(v=><button key={v} className={floor===v?'selected':''} onClick={()=>setFloor(v)}>{v==='both'?'Both floors':v==='ground'?'Ground':'First'}</button>)}</div><label>Sunlight study</label><div className="segmented">{(['morning','midday','evening'] as SunMode[]).map(v=><button key={v} className={sun===v?'selected':''} onClick={()=>setSun(v)}>{v}</button>)}</div><label className="check-row"><span>Show future rear extension</span><input type="checkbox" checked={extension} onChange={e=>setExtension(e.target.checked)}/></label><div className="orientation"><b>ORIENTATION</b><div className="compass"><span>N</span><span>W</span><span>E</span><span>S</span><i>⌖</i></div><p>Main road on South · Entry from East</p></div><p className="disclaimer">This is a visual concept model, not a construction drawing. Exact room layouts, dimensions, structural members and setbacks require architect/engineer validation.</p></aside>
@@ -342,6 +342,51 @@ export default function App() {
         <a className="design-tile tile-bedroom" href="/home-render/assets/reference-board.webp" target="_blank" rel="noreferrer"><img src="/home-render/assets/reference-board.webp" alt="Bedroom interior reference" /><span>10 · Bedroom</span></a>
       </div>
       <p className="gallery-footnote">These selectable tiles are crops of the original presentation-board overview. The full-resolution individual source renders are not yet separate website assets; the interactive 3D model above remains a conceptual model.</p>
+    </section>
+
+    <section className="phase-roadmap" id="phase-plan" style={{padding:'34px clamp(18px,4vw,56px)',background:'#f3f0e8',color:'#26372b'}}>
+      <div style={{maxWidth:1280,margin:'0 auto'}}>
+        <div style={{display:'flex',justifyContent:'space-between',alignItems:'end',gap:20,flexWrap:'wrap',marginBottom:22}}>
+          <div><div className="eyebrow">FROZEN MASTER DESIGN · REVISED BUILD SEQUENCE</div><h2 style={{fontSize:'clamp(26px,3vw,38px)',margin:'8px 0'}}>Build once. Extend without demolition.</h2>
+          <p style={{maxWidth:760,lineHeight:1.65,margin:0}}>The final design stays unchanged. Phase 1 now prioritises two bedrooms, two bathrooms, kitchen, puja and a compact living room that later becomes the dining room. The courtyard and double-height living room footprint stay reserved.</p></div>
+          <a href="#phase-details" style={{padding:'12px 18px',borderRadius:999,background:'#294c35',color:'#fff',textDecoration:'none',fontWeight:700}}>Explore construction phases ↓</a>
+        </div>
+        <div style={{display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(235px,1fr))',gap:14}}>
+          {[
+            {n:'01',name:'Essential ground-floor home',area:'Approx. 950–1,000 sq.ft. planning allowance',budget:'₹15 lakh target – validate by BOQ',tag:'BUILD FIRST',desc:'Two final-position bedrooms (14×15 ft each), two bathrooms (6×9 ft each), SE kitchen (14×12 ft), NE puja (8×8 ft) and compact living in the future dining footprint (approx. 14×12 ft).',reserve:'Keep the central 16×16 ft courtyard open and reserve the complete 22×20 ft double-height living footprint.'},
+            {n:'02',name:'Main double-height living room',area:'Approx. 450–500 sq.ft. concept allowance',budget:'Indicative ₹8–12 lakh; quote required',tag:'ADD LATER',desc:'Build the final 22×20 ft living room with approx. 22-ft clear height and connect through the opening detailed in the original drawings.',reserve:'No slab above this volume. Keep all Phase 1 permanent walls and openings intact.'},
+            {n:'03',name:'Complete ground floor',area:'Remaining ground-floor connections',budget:'Indicative ₹5–8 lakh; quote required',tag:'COMPLETE GF',desc:'Complete courtyard edges/finishes, verandah, dining use of the compact Phase 1 room, circulation and remaining ground-floor links exactly as the master plan.',reserve:'Courtyard remains open to sky, approx. 16×16 ft. No wall relocation or structural cutting.'},
+            {n:'04',name:'Complete first floor',area:'Approx. 1,450 sq.ft.',budget:'Indicative ₹22–28 lakh; quote required',tag:'DUPLEX FINISH',desc:'Bedroom 3, family lounge, gym, home theatre, gallery/indoor balcony overlooking the living room and courtyard, and terrace.',reserve:'Preserve the 22-ft living void and open-to-sky courtyard. Structure must be engineered for the final duplex from day one.'}
+          ].map(p=><article key={p.n} style={{background:'#fff',border:'1px solid #d8dfd4',borderRadius:18,padding:20,boxShadow:'0 8px 24px #233b2910'}}>
+            <div style={{display:'flex',justifyContent:'space-between',alignItems:'center',marginBottom:12}}><span style={{fontSize:30,fontWeight:800,color:'#8b9b78'}}>{p.n}</span><span style={{fontSize:10,fontWeight:800,letterSpacing:1.2,color:'#315b3c',background:'#edf4e9',padding:'7px 10px',borderRadius:30}}>{p.tag}</span></div>
+            <h3 style={{fontSize:20,margin:'0 0 8px'}}>{p.name}</h3><div style={{fontSize:12,color:'#68756a',fontWeight:700}}>{p.area}</div><div style={{fontSize:14,fontWeight:800,color:'#855b32',margin:'10px 0'}}>{p.budget}</div>
+            <p style={{fontSize:13,lineHeight:1.6}}>{p.desc}</p><div style={{fontSize:12,lineHeight:1.55,background:'#f5f4ee',padding:11,borderRadius:10}}><b>Keep reserved:</b> {p.reserve}</div>
+          </article>)}
+        </div>
+        <div id="phase-details" style={{marginTop:24,display:'grid',gridTemplateColumns:'repeat(auto-fit,minmax(270px,1fr))',gap:18}}>
+          <article style={{background:'#e8efe5',borderRadius:16,padding:20}}>
+            <h3 style={{marginTop:0}}>Phase 1 room arrangement</h3>
+            <ul style={{paddingLeft:19,lineHeight:1.8,fontSize:13}}>
+              <li>Bedroom 1 – final location, 14×15 ft</li><li>Bedroom 2 – final location, 14×15 ft</li><li>Two bathrooms – final locations, 6×9 ft each</li><li>Kitchen – southeast, 14×12 ft</li><li>Puja – northeast, 8×8 ft</li><li>Compact living now; becomes dining later</li>
+            </ul>
+          </article>
+          <article style={{background:'#fff',border:'1px solid #d8dfd4',borderRadius:16,padding:20}}>
+            <h3 style={{marginTop:0}}>Vastu & site intent</h3>
+            <ul style={{paddingLeft:19,lineHeight:1.8,fontSize:13}}>
+              <li>East main entrance; verify compass on survey</li><li>NE puja room; SE kitchen</li><li>Central courtyard open to sky</li><li>Approx. 25-ft front open space</li><li>Rear zone retained for approx. 800 sq.ft. future extension</li>
+            </ul>
+          </article>
+          <article style={{background:'#fff',border:'1px solid #d8dfd4',borderRadius:16,padding:20}}>
+            <h3 style={{marginTop:0}}>No-demolition rules</h3>
+            <ul style={{paddingLeft:19,lineHeight:1.8,fontSize:13}}>
+              <li>Draw all final walls and future openings now</li><li>Design lintels/frames and temporary closures in advance</li><li>Reserve service sleeves, conduits and capped plumbing branches</li><li>Never cut columns, beams or slabs later</li><li>Engineer foundations and frame for the complete duplex</li>
+            </ul>
+          </article>
+        </div>
+        <div style={{marginTop:18,padding:16,background:'#fff4df',border:'1px solid #e5c98f',borderRadius:14,fontSize:12,lineHeight:1.6}}>
+          <b>Important:</b> ₹15 lakh is a target, not a confirmed quote. The Phase 1 room schedule may exceed this amount once the full RCC slab, foundation, services and basic finishes are priced. Obtain a measured BOQ from Sundargarh contractors. Do not compromise structural safety, waterproofing or drainage to meet the target. All areas, dimensions, costs and Vastu directions require professional verification.
+        </div>
+      </div>
     </section>
     <section className="detail-grid"><article><span>01 / GROUND FLOOR</span><h2>Family living, all on one level.</h2><p>Two bedrooms, living and dining spaces, kitchen, bathrooms and a broad shaded front verandah.</p></article><article><span>02 / FIRST FLOOR</span><h2>A quieter private retreat.</h2><p>Third bedroom, family lounge, bathroom, balcony and open terrace.</p></article><article><span>03 / CLIMATE RESPONSE</span><h2>Built for the Odisha climate.</h2><p>Deep overhangs, shaded openings, cross-ventilation, brick jali, roof insulation and monsoon-ready drainage.</p></article><article><span>04 / MATERIAL PALETTE</span><h2>Honest, warm materials.</h2><p>RCC structure, supplied mud-brick infill, concrete ceilings, timber-tone soffits, stone steps and no floor tiles.</p></article></section>
     <footer><b>DESIGN NOTE</b><span>Confirm plot survey, soil conditions, local setbacks, Vastu preferences, structural design and rainwater disposal with qualified local professionals before construction.</span></footer>
